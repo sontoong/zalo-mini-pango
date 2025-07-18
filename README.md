@@ -1,1 +1,1 @@
-# zalo-mini-menu-retail
+# zalo-mini-pango
