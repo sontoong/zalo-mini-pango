@@ -1,0 +1,139 @@
+// Number Input
+.custom-input-number {
+  .ant-input-number-input {
+    padding-right: 0;
+    padding-left: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+  }
+}
+
+// Upload
+.customSizedUpload {
+  .ant-upload {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .ant-upload-list-item-container {
+    width: 80px !important;
+    height: 80px !important;
+    .ant-upload-list-item {
+      padding: 0 !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+// Select
+.customSelect.ant-select {
+  .ant-select-selector {
+    border: none !important;
+    .ant-select-selection-item {
+      font-weight: 500;
+    }
+  }
+  .ant-select-item-option:not(:last-child) {
+    border-bottom: 1px solid #f4f6f4;
+  }
+  .ant-select-selector {
+    width: 100%;
+  }
+}
+
+// Notification
+.ant-notification-notice-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+// Checkbox
+.custom-checkbox {
+  .ant-checkbox-label {
+    flex: 1 1 0%;
+  }
+}
+
+// Radio
+.custom-radio {
+  .ant-radio-wrapper {
+    margin-inline-end: 0;
+  }
+  .ant-radio-label {
+    flex: 1 1 0%;
+  }
+
+  .ant-radio-checked {
+    .ant-radio-inner {
+      background-color: white;
+      border-color: #dbdfe3;
+    }
+    .ant-radio-inner:after {
+      background-color: #8ee2ff;
+      width: 10px;
+      height: 10px;
+      transform: translate(3px, 3px);
+    }
+  }
+}
+
+// Tab
+.custom-tabs.ant-tabs {
+  .ant-tabs-nav {
+    .ant-tabs-nav-list {
+      width: 100%;
+      justify-content: center;
+      .ant-tabs-tab {
+        color: #6e7987;
+        flex: 1 1 0%;
+        justify-content: center;
+        padding-bottom: 8px;
+        padding-top: 8px;
+      }
+    }
+  }
+  .ant-tabs-content-holder {
+    .ant-tabs-content {
+      height: 100%;
+      .ant-tabs-tabpane {
+        height: 100%;
+      }
+    }
+  }
+}
+
+// Date picker
+@media (max-width: 648px) {
+  .ant-picker-panels {
+    position: relative;
+    > *:last-child {
+      .ant-picker-date-panel {
+        width: auto;
+      }
+      .ant-picker-week-panel {
+        width: auto;
+      }
+      .ant-picker-month-panel {
+        width: auto;
+      }
+      .ant-picker-quarter-panel {
+        width: auto;
+      }
+      .ant-picker-year-panel {
+        width: auto;
+      }
+      .ant-picker-header-view,
+      .ant-picker-body {
+        display: none;
+      }
+      .ant-picker-header {
+        border: none;
+        position: absolute;
+        right: 0;
+        height: 40px;
+      }
+    }
+  }
+}

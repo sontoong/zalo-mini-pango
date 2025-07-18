@@ -1,0 +1,101 @@
+module.exports = {
+  purge: {
+    enabled: true,
+    content: ["./src/**/*.{js,jsx,ts,tsx,vue}"],
+  },
+  theme: {
+    extend: {
+      fontSize: {
+        "2xs": "10px",
+      },
+      fontFamily: {
+        openSans: ["Open Sans", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
+      },
+      backgroundImage: {
+        "coundown-linear-gradient":
+          "linear-gradient(180deg, rgba(255, 144, 149, 0.15) 0%, rgba(255, 216, 192, 0.15) 100%)",
+      },
+      boxShadow: {},
+      colors: {
+        alert4: "#C79005",
+        primary: "#00BFFF",
+        primary1: "#F0F9FC",
+        primary4: "#8EE2FF",
+        primary5: "#00BFFF",
+        primary6: "#04A9E0",
+        secondary4: "#6AAEF2",
+        stroke1: "#EBE8E7",
+        stroke1a: "#F5F6F7",
+        stroke2: "#EEF0F2",
+        stroke3: "#DBDFE3",
+        stroke4: "#DCE3FF66",
+        strokeNavigation: "#E5E5E5",
+        surface: "#FAFBFC",
+        blue1: "#ECF2FB",
+        blue5: "#4C87D9",
+        red1: "#FBEFEF",
+        red4: "#EE2F2F",
+        red5: "#EC8368",
+        red6: "#E86543",
+        gray1: "#F2F2F2",
+        gray2: "#E6E6E6",
+        gray3: "#CFCFCF",
+        gray4: "#BCC2C8",
+        gray5: "#A5ADB6",
+        gray6: "#888888",
+        gray7: "#6D6D6D",
+        gray8: "#515151",
+        gray9: "#003D52",
+        green1: "#EFFBF6",
+        green2: "#E1F5EB",
+        green3: "#BBDFCD",
+        green4: "#038546",
+        green5: "#70C89A",
+        green6: "#4CBA81",
+        green7: "#44AF82",
+        brown1: "#F8EFE6",
+        brown6: "#8F5C28",
+        yellow1: "#FBFBEA",
+        yellow4: "#FFD800",
+        yellow5: "#D9D441",
+        purple2: "#E3DEF5",
+        purple4: "#B2A0EC",
+        purple5: "#9A83E6",
+        senmaticred1: "#FFF5F5",
+        senmaticred2: "#FFD6D6",
+        error3: "#E55C5C",
+        success1: "#EDFCF1",
+        success4: "#1C9946",
+        neutral2: "#FBF9F8",
+        neutral5: "#9D9D9D",
+        neutral6: "#747373",
+        neutral7: "#525252",
+        neutral8: "#535353",
+        neutralgray6: "#6F6F6F",
+        accent6: "#1C9B47",
+        infor1: "#EEF5FC",
+        infor3: "#46A3ED",
+        infor4: "#287BBF",
+      },
+    },
+  },
+  plugins: [
+    function ({ addUtilities }) {
+      const scrollbarUtilities = {
+        ".hide-scrollbar": {
+          /* Firefox */
+          "scrollbar-width": "none",
+          /* IE and Edge */
+          "-ms-overflow-style": "none",
+          /* Chrome, Safari, Opera */
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        },
+      };
+      addUtilities(scrollbarUtilities);
+    },
+  ],
+};
