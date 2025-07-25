@@ -7,6 +7,7 @@ import InformationIcon from "../../static/icons/information-icon-green.png";
 import { formatCurrency } from "../../utils/helpers";
 import { CollapseProps, Divider } from "antd";
 import { Collapse } from "../common/collapse";
+import { CartFloatButton } from "../cart";
 
 const ServiceList = () => {
   return (
@@ -23,6 +24,7 @@ const ServiceList = () => {
         <ServiceListItem />
         <ServiceListItem />
       </div>
+      <CartFloatButton totalPrice={600000} />
     </div>
   );
 };

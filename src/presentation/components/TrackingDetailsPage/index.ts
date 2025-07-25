@@ -1,1 +1,1 @@
-export { default as TrackingDetailsPageMaintenanceDetails } from "./maintenance-details";
+export { default as MaintenanceTrackingPageMaintenanceDetails } from "./maintenance-details";

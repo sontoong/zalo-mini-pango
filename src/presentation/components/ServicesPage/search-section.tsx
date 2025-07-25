@@ -1,6 +1,5 @@
 import React from "react";
 import { SearchBar } from "../common/search-bar";
-import SearchIcon from "../../static/icons/search-icon-green.png";
 
 const SearchSection = () => {
   return (

@@ -8,8 +8,9 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Modal, Upload } from "antd";
 import { RequiredFields } from "../../utils/types";
 import { v4 as uuidv4 } from "uuid";
-import ImageIcon from "../../static/icons/image-icon.svg";
+import AddImageIcon from "../../static/icons/gallery-add.png";
 import EditIcon from "../../static/icons/edit-icon-blue.png";
+import RemoveIcon from "../../static/icons/remove-image-icon.png";
 
 function ImageUpload(props: UploadImageProps) {
   const { message } = App.useApp();
@@ -149,16 +150,16 @@ function UploadImg(props: UploadProps) {
     return (
       <div className="relative">
         <div
-          className="size-[80px] overflow-hidden rounded-full"
+          className="h-[100px] w-[106px] overflow-hidden rounded-[12px]"
           onClick={actions.preview}
         >
           <img src={imageUrl} className="size-full object-cover" />
         </div>
 
         {/* Add image button */}
-        <div
-          className="absolute bottom-3 right-3 z-10 size-[34px] translate-x-1/2 translate-y-1/2 rounded-full bg-white p-[7px]"
-          style={{ boxShadow: "0px 6.43px 17.14px 0px #0000001A" }}
+        {/* <div
+          className="absolute top-[6px] right-[6px] z-10 size-[34px] rounded-full bg-white p-[7px]"
+          style={{ boxShadow: "0px 4px 40px 0px #AEB5AF1F" }}
           onClick={(e) => {
             e.stopPropagation();
             const fileInput = document.querySelector(
@@ -170,6 +171,18 @@ function UploadImg(props: UploadProps) {
           }}
         >
           <img src={EditIcon} alt="" className="size-full object-cover" />
+        </div> */}
+
+        {/* Remove image button */}
+        <div
+          className="absolute right-[6px] top-[6px] z-10 size-[20px] rounded-full bg-gray-300"
+          style={{ boxShadow: "0px 4px 40px 0px #AEB5AF1F" }}
+          onClick={(e) => {
+            e.stopPropagation();
+            actions.remove();
+          }}
+        >
+          <img src={RemoveIcon} alt="" className="size-full object-cover" />
         </div>
       </div>
     );
@@ -186,8 +199,11 @@ function UploadImg(props: UploadProps) {
         {...props}
       >
         {props.fileListLength < props.maxCount ? (
-          <div style={{ border: 0, background: "none" }}>
-            <img src={ImageIcon} />
+          <div className="flex flex-col items-center gap-[8px] px-[12px]">
+            <img src={AddImageIcon} className="size-[28px] object-cover" />
+            <div className="text-center text-xs font-normal text-purple4">
+              Tải hoặc chụp ảnh sản phẩm
+            </div>
           </div>
         ) : null}
       </Upload>

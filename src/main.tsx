@@ -29,7 +29,14 @@ import ServicesPage from "./presentation/pages/ServicesPage";
 import MaintenancePage from "./presentation/pages/MaintenancePage";
 import OrderPage from "./presentation/pages/OrderPage";
 import OrderSuccessPage from "./presentation/pages/OrderSuccessPage";
-import TrackingDetailsPage from "./presentation/pages/TrackingDetailsPage";
+import MaintenanceTrackingPage from "./presentation/pages/MaintenanceTrackingPage";
+import TechnicalSupportPage from "./presentation/pages/TechnicalSupportPage";
+import WarrantyPage from "./presentation/pages/WarrantyPage";
+import WarrantyOrderPage from "./presentation/pages/WarrantyOrderPage";
+import WarrantyOrderSuccessPage from "./presentation/pages/WarrantyOrderSuccessPage";
+import WarrantyDetailsPage from "./presentation/pages/WarrantyDetailsPage";
+import HistoryPage from "./presentation/pages/HistoryPage";
+import HistoryDetailsPage from "./presentation/pages/HistoryDetailsPage";
 
 const Layout = () => {
   return (
@@ -73,8 +80,40 @@ const router = createBrowserRouter(
           element: <OrderSuccessPage />,
         },
         {
-          path: "/tracking-details",
-          element: <TrackingDetailsPage />,
+          path: "/maintenance-tracking",
+          element: <MaintenanceTrackingPage />,
+        },
+        {
+          path: "/technical-support",
+          element: <TechnicalSupportPage />,
+        },
+        {
+          path: "/technical-support/success",
+          element: <TechnicalSupportPage success={true} />,
+        },
+        {
+          path: "/warranty",
+          element: <WarrantyPage />,
+        },
+        {
+          path: "/warranty/:warrantyId",
+          element: <WarrantyDetailsPage />,
+        },
+        {
+          path: "/order-warranty",
+          element: <WarrantyOrderPage />,
+        },
+        {
+          path: "/order-warranty-success",
+          element: <WarrantyOrderSuccessPage />,
+        },
+        {
+          path: "/history",
+          element: <HistoryPage />,
+        },
+        {
+          path: "/history/:historyId",
+          element: <HistoryDetailsPage />,
         },
       ],
     },

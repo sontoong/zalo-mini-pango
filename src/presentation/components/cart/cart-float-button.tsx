@@ -1,14 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
 import CartIcon from "../../static/icons/cart-icon.png";
 import { formatCurrency } from "../../utils/helpers";
 import { Button } from "../common/button";
 import { Badge } from "antd";
 import { CartPopup } from "./cart-popup";
 
-const CartFloatButton = () => {
+const CartFloatButton: FC<Props> = ({ onBuyButtonClick, totalPrice }) => {
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 z-[1001] flex h-[89px] gap-[10px] bg-white px-[16px] py-[24px] pt-[12px]"
+      className="fixed bottom-0 left-0 right-0 z-10 flex h-[89px] gap-[10px] bg-white px-[16px] py-[24px] pt-[12px]"
       style={{ boxShadow: "0px -4px 24px 0px #A6A6A633" }}
     >
       <CartPopup>
@@ -25,17 +25,25 @@ const CartFloatButton = () => {
       </CartPopup>
       <Button
         text={
-          <div className="flex justify-center gap-[10px]">
-            <div className="text-lg font-medium text-white">Mua ngay: </div>
-            <div className="text-lg font-semibold text-white">
-              {formatCurrency(600000)}
-            </div>
+          <div className="flex justify-center">
+            <div className="text-lg font-medium text-white">Mua ngay</div>
+            {totalPrice ? (
+              <div className="text-lg font-semibold text-white">
+                : {formatCurrency(totalPrice)}
+              </div>
+            ) : null}
           </div>
         }
         className="flex-1 rounded-[12px] bg-green6"
+        onClick={onBuyButtonClick}
       />
     </div>
   );
 };
 
 export default CartFloatButton;
+
+type Props = {
+  totalPrice?: number;
+  onBuyButtonClick?: () => void;
+};

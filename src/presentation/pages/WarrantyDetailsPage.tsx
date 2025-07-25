@@ -1,20 +1,17 @@
 import React from "react";
 import { Header, Page } from "zmp-ui";
-import ArrowLeftIcon from "../static/icons/arrow-left.png";
-import {
-  ServicesPageSearchSection,
-  ServicesPageServiceList,
-} from "../components/ServicesPage";
 import { CallSupport } from "../components/support";
+import ArrowLeftIcon from "../static/icons/arrow-left.png";
+import { WarrantyDetailsPageWarrantyDetails } from "../components/WarrantyDetailsPage";
 
-const ServicesPage = () => {
+const WarrantyDetailsPage = () => {
   return (
     <Page className="page-content relative flex flex-1 flex-col bg-white">
       <Header
         title={
           (
             <div className="flex w-[calc(100%-90px)] justify-between">
-              <div>Mua hàng</div>
+              <div>Chi tiết bảo hành</div>
               <CallSupport />
             </div>
           ) as unknown as string
@@ -26,12 +23,11 @@ const ServicesPage = () => {
           </div>
         }
       />
-      <ServicesPageSearchSection />
-      <div className="flex-1 overflow-auto bg-[#F8F8F8]">
-        <ServicesPageServiceList />
+      <div className="flex-1 overflow-auto py-[16px] hide-scrollbar">
+        <WarrantyDetailsPageWarrantyDetails />
       </div>
     </Page>
   );
 };
 
-export default ServicesPage;
+export default WarrantyDetailsPage;

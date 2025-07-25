@@ -39,7 +39,7 @@ const TrackingItem = () => {
         <div className="text-xs font-medium text-gray6">Mã đơn hàng</div>
         <div
           className="flex items-center gap-[4px]"
-          onClick={() => navigate("/tracking-details")}
+          onClick={() => navigate("/maintenance-tracking")}
         >
           <div className="font-sm font-semibold text-purple5">#3435435</div>
           <img src={ShareIcon} alt="" className="size-[16px] object-cover" />

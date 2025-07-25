@@ -17,6 +17,7 @@ function RadioGroup({
   divider,
   items,
   className,
+  extraRender,
   ...props
 }: RadioGroupProps<RecordType>) {
   return (
@@ -24,6 +25,7 @@ function RadioGroup({
       {items?.map((item, index) => (
         <React.Fragment key={index}>
           <OriginRadio value={item.value}>{render(item)}</OriginRadio>
+          {extraRender ? extraRender(item) : null}
           {index < items.length - 1 && divider}
         </React.Fragment>
       ))}
@@ -39,30 +41,43 @@ function RadioButtonGroup({
   className,
   itemFlex = true,
   divider,
-  ...rest
+  multiple = false,
+  ...props
 }: RadioButtonGroupProps<RecordType>) {
-  const handleClick = (value: number) => {
-    if (rest.onChange) {
-      rest.onChange(value);
+  const handleClick = (value: RecordType) => {
+    if (multiple) {
+      const currentValue = Array.isArray(props.value) ? props.value : [];
+      const newValue = currentValue.includes(value)
+        ? currentValue.filter((item) => item !== value)
+        : [...currentValue, value];
+      props.onChange?.(newValue);
+    } else {
+      props.onChange?.(value);
     }
   };
 
   if (Array.isArray(items)) {
     if (items.length === 0) {
-      return <></>;
+      return null;
     }
     return (
       <div className={className} style={{ flexDirection: direction }}>
-        {items.map((item, index) => (
-          <div
-            className={clsx("cursor-pointer", { "flex-1": itemFlex })}
-            onClick={() => handleClick(item.value)}
-            key={index}
-          >
-            {rest.value === item.value ? activeRender(item) : render(item)}
-            {index < items.length - 1 && divider}
-          </div>
-        ))}
+        {items.map((item, index) => {
+          const isActive = multiple
+            ? Array.isArray(props.value) && props.value.includes(item.value)
+            : props.value === item.value;
+
+          return (
+            <div
+              className={clsx("cursor-pointer", { "flex-1": itemFlex })}
+              onClick={() => handleClick(item.value)}
+              key={index}
+            >
+              {isActive ? activeRender(item) : render(item)}
+              {index < items.length - 1 && divider}
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -78,6 +93,7 @@ type RadioGroupProps<RecordType> = {
   items: RecordType[];
   render: (item?: RecordType) => React.ReactNode;
   divider?: React.ReactNode;
+  extraRender?: (item?: RecordType) => React.ReactNode;
 } & OriginRadioGroupProps;
 
 type RadioButtonGroupProps<RecordType> = {
@@ -90,4 +106,5 @@ type RadioButtonGroupProps<RecordType> = {
   value?: any;
   onChange?: (value: any) => void;
   className?: string;
+  multiple?: boolean;
 };
