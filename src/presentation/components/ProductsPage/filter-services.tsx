@@ -1,20 +1,21 @@
 import React, { FC } from "react";
 import ServiceImg1 from "../../static/service-1.png";
 import ServiceImg2 from "../../static/service-2.png";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import CheckIcon from "../../static/icons/tick-circle-icon-green.png";
 import clsx from "clsx";
 
 const FilterServiceList = () => {
-  const { serviceId } = useParams();
+  const [searchParams] = useSearchParams();
+  const categoryId = searchParams.get("categoryId") || "";
 
   return (
-    <div className="flex justify-between gap-[20px] hide-scrollbar">
+    <div className="flex justify-between gap-[20px] px-[16px] hide-scrollbar">
       {services.map((service, index) => (
         <div key={index} className="relative">
           <ServiceItem
             service={service}
-            active={(serviceId as unknown as number) == index + 1}
+            active={(categoryId as unknown as number) == index + 1}
           />
         </div>
       ))}
@@ -64,9 +65,9 @@ type Service = {
 };
 
 const services = [
-  { image: ServiceImg1, name: "Máy lạnh", linkTo: "/maintenance/1" },
-  { image: ServiceImg2, name: "Máy giặt", linkTo: "/maintenance/2" },
-  { image: ServiceImg2, name: "Máy giặt", linkTo: "/maintenance/3" },
-  { image: ServiceImg2, name: "Máy giặt", linkTo: "/maintenance/4" },
-  { image: ServiceImg2, name: "Máy giặt", linkTo: "/maintenance/5" },
+  { image: ServiceImg1, name: "Máy lạnh", linkTo: "/products?categoryId=1" },
+  { image: ServiceImg2, name: "Máy giặt", linkTo: "/products?categoryId=2" },
+  { image: ServiceImg2, name: "Máy giặt", linkTo: "/products?categoryId=3" },
+  { image: ServiceImg2, name: "Máy giặt", linkTo: "/products?categoryId=4" },
+  { image: ServiceImg2, name: "Máy giặt", linkTo: "/products?categoryId=5" },
 ];

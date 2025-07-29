@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import zaloMiniApp from "zmp-vite-plugin";
 import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
 // Removed the import for react-refresh as it's no longer needed
@@ -10,6 +11,7 @@ export default () => {
     base: "",
     assetsInclude: ["**/*.svg"],
     plugins: [
+      zaloMiniApp(),
       svgr(),
       reactRefresh(),
       {

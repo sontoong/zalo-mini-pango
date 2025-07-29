@@ -1,85 +1,49 @@
-import React, { FC, useState } from "react";
-import { createPortal } from "react-dom";
-import { Sheet } from "zmp-ui";
-import CloseIcon from "../../static/icons/close-icon.png";
+import React, { FC } from "react";
+import { Collapse } from "../common/collapse";
 import { Form } from "../common/form";
+import { CollapseProps, Divider, FormInstance, InputNumber } from "antd";
 import { formatCurrency } from "../../utils/helpers";
 import { Button } from "../common/button";
-import { Divider, InputNumber } from "antd";
 
-const CartPopup: FC<Props> = ({ children }) => {
-  const [form] = Form.useForm();
-  const [visible, setVisible] = useState<boolean>(false);
-
-  const onFinish = (value: any) => {
-    setVisible(false);
-  };
-
+const ProductList: FC<Props> = ({ form }) => {
   const initialValues = {
     services: data,
   };
 
-  return (
-    <>
-      {children({ open: () => setVisible(true) })}
-      {createPortal(
-        <Sheet
-          title={
-            (
-              <div className="absolute inset-x-[16px] flex items-center">
-                <div className="text-lg font-semibold">Giỏ hàng</div>
-                <div
-                  className="absolute right-0 ml-auto size-[16px]"
-                  onClick={() => setVisible(false)}
-                >
-                  <img
-                    src={CloseIcon}
-                    alt=""
-                    className="size-full object-cover"
-                  />
-                </div>
-              </div>
-            ) as unknown as string
-          }
-          visible={visible}
-          onClose={() => {
-            setVisible(false);
-            form.resetFields();
-          }}
-          mask
-          handler={false}
-          unmountOnClose
-          height={"90vh"}
-          style={{
-            background: "#FFF",
-            borderRadius: "8px 8px 0 0",
-          }}
-        >
-          <Form
-            form={form}
-            onFinish={onFinish}
-            initialValues={initialValues}
-            className="flex-1 px-[16px]"
-          >
-            <Divider className="my-[12px]" />
-            <Form.List name="services">
-              {(fields, { remove }) => (
-                <div className="flex flex-col gap-[12px] overflow-auto pb-[150px]">
-                  {/* Cart Item */}
-                  {fields.map((field, index) => {
-                    const itemIndex = field.name;
-                    const item = form.getFieldValue("services")[itemIndex];
+  const items: CollapseProps["items"] = [
+    {
+      key: "1",
+      label: (
+        <div className="flex flex-col gap-[8px]">
+          <div className="text-lg font-semibold">Thông tin sản phẩm</div>
+        </div>
+      ),
+      children: (
+        <Form form={form} initialValues={initialValues} className="flex-1">
+          <Form.List name="services">
+            {(fields, { remove }) => (
+              <div className="flex flex-col gap-[12px] overflow-auto">
+                {/* Service Item */}
+                {fields.map((field, index) => {
+                  const itemIndex = field.name;
+                  const item = form.getFieldValue("services")[itemIndex];
 
-                    return (
-                      <React.Fragment key={index}>
+                  return (
+                    <React.Fragment key={index}>
+                      <div className="flex flex-col gap-[8px]">
                         <div className="flex flex-col gap-[12px]">
                           {/* Title */}
                           <div className="text-base font-semibold">
                             {item.title}
                           </div>
                           <div className="flex items-center justify-between">
-                            <div className="text-sm font-semibold text-gray7">
-                              {formatCurrency(item.price)}
+                            <div className="flex items-center gap-[6px]">
+                              <div className="text-sm font-semibold text-gray7">
+                                {formatCurrency(item.price)}
+                              </div>
+                              <div className="text-[11px] font-semibold text-gray5 line-through">
+                                {formatCurrency(item.initialPrice)}
+                              </div>
                             </div>
                             <Form.Item
                               noStyle
@@ -148,59 +112,68 @@ const CartPopup: FC<Props> = ({ children }) => {
                             </Form.Item>
                           </div>
                         </div>
-                        {index < fields.length - 1 ? (
-                          <Divider className="m-0" />
-                        ) : null}
-                      </React.Fragment>
-                    );
-                  })}
-                </div>
-              )}
-            </Form.List>
-            {/* Footer */}
-            <div
-              className="fixed inset-x-0 bottom-0 flex items-center justify-between bg-white px-[16px] pb-[24px] pt-[12px]"
-              style={{ boxShadow: "0px -4px 24px 0px #A6A6A633" }}
-            >
-              <div className="flex flex-col gap-[8px]">
-                <div className="text-sm font-medium text-gray6">
-                  Số lượng: 1
-                </div>
-                <div className="text-lg font-bold">
-                  <span className="text-gray7">Tổng: </span>
-                  <span className="text-red6">{formatCurrency(600000)}</span>
-                </div>
+                      </div>
+                      {index < fields.length - 1 ? (
+                        <Divider className="m-0" />
+                      ) : null}
+                    </React.Fragment>
+                  );
+                })}
               </div>
-              <Button
-                text={
-                  <div className="text-lg font-medium text-white">Đặt hàng</div>
-                }
-                className="h-[50px] flex-none rounded-[12px] bg-green6 px-[20px]"
-              />
+            )}
+          </Form.List>
+          <Divider className="my-[8px]" />
+          <div className="flex items-center justify-between">
+            <div className="text-base font-semibold text-gray7">Tổng tiền</div>
+            <div className="text-base font-semibold">
+              {formatCurrency(100000)}
             </div>
-          </Form>
-        </Sheet>,
-        document.body,
-      )}
-    </>
+          </div>
+        </Form>
+      ),
+      styles: {
+        header: {
+          alignItems: "center",
+          padding: 0,
+        },
+        body: {
+          padding: 0,
+          paddingTop: "8px",
+        },
+      },
+      className: "bg-white p-[12px]",
+    },
+  ];
+
+  return (
+    <Collapse
+      items={items}
+      bordered={false}
+      expandIconPosition="end"
+      className="overflow-hidden rounded-[12px]"
+      style={{ boxShadow: "0px 4px 24px 0px #BABABA1F" }}
+      defaultActiveKey={1}
+    />
   );
 };
 
-export { CartPopup };
+export { ProductList };
 
 type Props = {
-  children: (methods: { open: () => void }) => React.ReactNode;
+  form: FormInstance;
 };
 
 const data = [
   {
-    title: "Vệ sinh & Bảo dưỡng - Máy gi(Có tháo lồng giặt)",
-    price: 300000,
+    title: "Máy lạnh Toshiba Inverter 1 HP RAS-H10E2KCVG-V",
+    price: 9000000,
+    initialPrice: 13000000,
     quantity: 2,
   },
   {
     title: "Vệ sinh & bảo dưỡng - Điều hoà tiêu chuẩn",
-    price: 300000,
+    price: 9000000,
+    initialPrice: 13000000,
     quantity: 1,
   },
 ];

@@ -9,6 +9,8 @@ import { warrantyStatus } from "../../constants/warranty-status";
 const WarrantyDetails = () => {
   const navigate = useNavigate();
 
+  const status = warrantyStatus["1"];
+
   return (
     <div className="flex h-full flex-col gap-[20px] px-[16px]">
       <div className="flex w-full flex-col items-center gap-[12px] rounded-[12px] border border-gray1 bg-surface1 px-[20px] py-[16px]">
@@ -72,14 +74,12 @@ const WarrantyDetails = () => {
                 <Tag
                   className="m-0 flex h-[25px] items-center justify-center rounded-[24px]"
                   style={{
-                    background: warrantyStatus["1"].bgColor,
-                    borderColor: warrantyStatus["1"].borderColor,
-                    color: warrantyStatus["1"].color,
+                    background: status.bgColor,
+                    borderColor: status.borderColor,
+                    color: status.color,
                   }}
                 >
-                  <div className="text-xs font-semibold">
-                    {warrantyStatus["1"].label}
-                  </div>
+                  <div className="text-xs font-semibold">{status.label}</div>
                 </Tag>
               </div>
             </div>

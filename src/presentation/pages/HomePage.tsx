@@ -18,6 +18,7 @@ const HomePage: FC = () => {
         />
         <Button text="Bảo hành" onClick={() => navigate("/warranty")} />
         <Button text="Đặt hàng" onClick={() => navigate("/history")} />
+        <Button text="Mua hàng" onClick={() => navigate("/products")} />
       </div>
     </Page>
   );

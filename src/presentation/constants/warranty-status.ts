@@ -13,6 +13,13 @@ export const warrantyStatus = {
     borderColor: "#EC8368",
     key: "2",
   },
+  "3": {
+    label: "Chưa kích hoạt",
+    color: "#8265E0",
+    bgColor: "#F2EFF9",
+    borderColor: "#9A83E6",
+    key: "3",
+  },
 } as const;
 
 export type WarrantyStatusType = keyof typeof warrantyStatus;

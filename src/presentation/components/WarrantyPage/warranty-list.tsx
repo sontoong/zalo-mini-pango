@@ -118,6 +118,8 @@ const WarrantyListItem: FC<{ item: any; form: any; itemIndex: any }> = ({
   form,
   itemIndex,
 }) => {
+  const itemStatus = warrantyStatus[item.status];
+
   const checkStatus = (status: WarrantyStatusType) => {
     return item.status === status;
   };
@@ -168,14 +170,12 @@ const WarrantyListItem: FC<{ item: any; form: any; itemIndex: any }> = ({
             <Tag
               className="m-0 flex h-[25px] items-center justify-center rounded-[24px]"
               style={{
-                background: warrantyStatus[item.status].bgColor,
-                borderColor: warrantyStatus[item.status].borderColor,
-                color: warrantyStatus[item.status].color,
+                background: itemStatus.bgColor,
+                borderColor: itemStatus.borderColor,
+                color: itemStatus.color,
               }}
             >
-              <div className="text-xs font-semibold">
-                {warrantyStatus[item.status].label}
-              </div>
+              <div className="text-xs font-semibold">{itemStatus.label}</div>
             </Tag>
           </div>
         </div>

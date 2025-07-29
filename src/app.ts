@@ -11,6 +11,7 @@ import "./presentation/styles/zaui.scss";
 // Import swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 import "./presentation/styles/swiper.scss";
 
 // Import tailwind styles

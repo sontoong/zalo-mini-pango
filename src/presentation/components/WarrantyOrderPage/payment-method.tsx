@@ -8,7 +8,7 @@ export const PaymentMethodForm: FC<Props> = ({ form }) => {
     <Form form={form}>
       <div className="flex flex-col gap-[12px] px-[16px]">
         <div className="text-xl font-semibold">Phương thức thanh toán</div>
-        <Form.Item name="paymentMethod">
+        <Form.Item name="paymentMethod" noStyle>
           <Radio.Group
             items={items}
             render={(method) => (

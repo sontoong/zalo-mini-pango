@@ -37,6 +37,11 @@ import WarrantyOrderSuccessPage from "./presentation/pages/WarrantyOrderSuccessP
 import WarrantyDetailsPage from "./presentation/pages/WarrantyDetailsPage";
 import HistoryPage from "./presentation/pages/HistoryPage";
 import HistoryDetailsPage from "./presentation/pages/HistoryDetailsPage";
+import ProductsPage from "./presentation/pages/ProductsPage";
+import ProductSearchPage from "./presentation/pages/ProductSearchPage";
+import ProductDetailsPage from "./presentation/pages/ProductDetailsPage";
+import ProductOrderPage from "./presentation/pages/ProductOrderPage";
+import ProductOrderSuccessPage from "./presentation/pages/ProductOrderSuccessPage";
 
 const Layout = () => {
   return (
@@ -114,6 +119,26 @@ const router = createBrowserRouter(
         {
           path: "/history/:historyId",
           element: <HistoryDetailsPage />,
+        },
+        {
+          path: "/products",
+          element: <ProductsPage />,
+        },
+        {
+          path: "/products/search",
+          element: <ProductSearchPage />,
+        },
+        {
+          path: "/products/:productId",
+          element: <ProductDetailsPage />,
+        },
+        {
+          path: "/order-product",
+          element: <ProductOrderPage />,
+        },
+        {
+          path: "/order-product-success",
+          element: <ProductOrderSuccessPage />,
         },
       ],
     },

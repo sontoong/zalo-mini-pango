@@ -114,3 +114,15 @@ export function isNonValue(value: unknown): value is undefined | null {
     value === undefined || value === null || value === "" || Number.isNaN(value)
   );
 }
+
+export const getYoutubeThumbnail = (
+  videoId: string,
+  quality:
+    | "default"
+    | "mqdefault"
+    | "hqdefault"
+    | "sddefault"
+    | "maxresdefault" = "mqdefault",
+) => {
+  return `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
+};
