@@ -42,6 +42,8 @@ import ProductSearchPage from "./presentation/pages/ProductSearchPage";
 import ProductDetailsPage from "./presentation/pages/ProductDetailsPage";
 import ProductOrderPage from "./presentation/pages/ProductOrderPage";
 import ProductOrderSuccessPage from "./presentation/pages/ProductOrderSuccessPage";
+import WarrantyActivationPage from "./presentation/pages/WarrantyActivationPage";
+import WarrantyActivationSuccessPage from "./presentation/pages/WarrantyActivationSuccessPage";
 
 const Layout = () => {
   return (
@@ -103,6 +105,14 @@ const router = createBrowserRouter(
         {
           path: "/warranty/:warrantyId",
           element: <WarrantyDetailsPage />,
+        },
+        {
+          path: "/warranty-activate",
+          element: <WarrantyActivationPage />,
+        },
+        {
+          path: "/warranty-activate-success",
+          element: <WarrantyActivationSuccessPage />,
         },
         {
           path: "/order-warranty",

@@ -1,13 +1,13 @@
 import React from "react";
 import { Tabs } from "../common/tabs";
 import { TabsProps } from "antd";
-import { SearchBar } from "../common/search-bar";
+import { SearchBarNoPopup } from "../common/search-bar";
 import { HistoryList } from "./history-list";
 
 const HistoryTabs = () => {
   return (
     <div className="flex flex-col gap-[8px]">
-      <SearchBar
+      <SearchBarNoPopup
         placeholder="Tìm sản phẩm/ số seri sản phẩm"
         className="h-[44px]"
       />

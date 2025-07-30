@@ -17,6 +17,10 @@ const HomePage: FC = () => {
           onClick={() => navigate("/technical-support")}
         />
         <Button text="Bảo hành" onClick={() => navigate("/warranty")} />
+        <Button
+          text="Kích hoạt bảo hành"
+          onClick={() => navigate("/warranty-activate")}
+        />
         <Button text="Đặt hàng" onClick={() => navigate("/history")} />
         <Button text="Mua hàng" onClick={() => navigate("/products")} />
       </div>
