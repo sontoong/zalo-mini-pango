@@ -198,14 +198,16 @@ function UploadImg(props: UploadProps) {
         itemRender={props.itemRender || customItemRender}
         {...props}
       >
-        {props.fileListLength < props.maxCount ? (
-          <div className="flex flex-col items-center gap-[8px] px-[12px]">
-            <img src={AddImageIcon} className="size-[28px] object-cover" />
-            <div className="text-center text-xs font-normal text-purple4">
-              Tải hoặc chụp ảnh sản phẩm
-            </div>
-          </div>
-        ) : null}
+        {props.fileListLength < props.maxCount
+          ? props.uploadButton || (
+              <div className="flex flex-col items-center gap-[8px] px-[12px]">
+                <img src={AddImageIcon} className="size-[28px] object-cover" />
+                <div className="text-center text-xs font-normal text-purple4">
+                  Tải hoặc chụp ảnh sản phẩm
+                </div>
+              </div>
+            )
+          : null}
       </Upload>
       <Modal
         open={previewOpen}
@@ -228,12 +230,14 @@ type UploadProps = RequiredFields<
 > & {
   uploadConditions?: (file: FileType) => boolean;
   fileListLength: number;
+  uploadButton?: React.ReactNode;
 };
 
 type UploadImageProps = {
   images: UploadImage[] | UploadFile[];
   setImages: React.Dispatch<React.SetStateAction<UploadImage[]>>;
   maxCount?: OriginalUploadProps["maxCount"];
+  uploadButton?: React.ReactNode;
 } & OriginalUploadProps;
 
 export { ImageUpload };

@@ -61,6 +61,7 @@ module.exports = {
         yellow1: "#FBFBEA",
         yellow4: "#FFD800",
         yellow5: "#D9D441",
+        yellow7: "#DBDE11",
         yellow8: "#A3A50D",
         purple1: "#F2EFF9",
         purple2: "#E3DEF5",

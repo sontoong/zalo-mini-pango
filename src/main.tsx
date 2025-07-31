@@ -44,6 +44,8 @@ import ProductOrderPage from "./presentation/pages/ProductOrderPage";
 import ProductOrderSuccessPage from "./presentation/pages/ProductOrderSuccessPage";
 import WarrantyActivationPage from "./presentation/pages/WarrantyActivationPage";
 import WarrantyActivationSuccessPage from "./presentation/pages/WarrantyActivationSuccessPage";
+import AccountPage from "./presentation/pages/AccountPage";
+import ProfilePage from "./presentation/pages/ProfilePage";
 
 const Layout = () => {
   return (
@@ -149,6 +151,14 @@ const router = createBrowserRouter(
         {
           path: "/order-product-success",
           element: <ProductOrderSuccessPage />,
+        },
+        {
+          path: "/account",
+          element: <AccountPage />,
+        },
+        {
+          path: "/profile",
+          element: <ProfilePage />,
         },
       ],
     },
