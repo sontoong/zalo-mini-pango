@@ -2,7 +2,7 @@ import React from "react";
 import ProductImg from "../../static/service.png";
 import { formatCurrency } from "../../utils/helpers";
 import { Button } from "../common/button";
-import CartAdd from "../../static/icons/cart-add.png";
+import CartAddIcon from "../icons/CartAddIcon";
 import { Form } from "../common/form";
 import clsx from "clsx";
 import { SearchBarNoPopup } from "../common/search-bar";
@@ -66,7 +66,7 @@ const ProductListItem = () => {
       </div>
       <div className="flex justify-between gap-[8px]">
         <Button.Icon
-          icon={<img src={CartAdd} />}
+          icon={<CartAddIcon className="text-green6" />}
           className="size-[30px] !rounded-[8px] bg-green2"
         />
         <Button

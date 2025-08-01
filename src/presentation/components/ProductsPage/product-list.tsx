@@ -2,7 +2,7 @@ import React from "react";
 import ProductImg from "../../static/service.png";
 import { formatCurrency } from "../../utils/helpers";
 import { Button } from "../common/button";
-import CartAdd from "../../static/icons/cart-add.svg";
+import CartAddIcon from "../icons/CartAddIcon";
 import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
@@ -37,7 +37,7 @@ const ProductListItem = () => {
       </div>
       <div className="flex justify-between gap-[8px]">
         <Button.Icon
-          icon={<img src={CartAdd} className="object-contain" />}
+          icon={<CartAddIcon className="text-green6" />}
           className="size-[30px] !rounded-[8px] bg-green2"
           onClick={(e) => e.stopPropagation()}
         />
