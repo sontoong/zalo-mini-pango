@@ -17,7 +17,8 @@ import {
 } from "../../constants/warranty-status";
 import clsx from "clsx";
 
-const WarrantyList = () => {
+const WarrantyList: FC<Props> = ({ scrollY }) => {
+  const showSearchFloat = scrollY > 100;
   const navigate = useNavigate();
   const [form] = Form.useForm();
 
@@ -28,18 +29,40 @@ const WarrantyList = () => {
 
   return (
     <>
-      <Form form={form} initialValues={initialValues}>
+      <div
+        className={clsx(
+          "fixed inset-x-0 !z-[999] hidden bg-white px-[16px] py-[10px]",
+          {
+            "!block": showSearchFloat,
+            "pointer-events-none": !showSearchFloat,
+          },
+        )}
+        style={{
+          boxShadow: "0px 4px 40px 0px #AEB5AF1F",
+        }}
+      >
+        <Form form={form} initialValues={initialValues}>
+          <Form.Item name="keywords" noStyle>
+            <SearchBar />
+          </Form.Item>
+        </Form>
+      </div>
+      <Form
+        form={form}
+        initialValues={initialValues}
+        className="px-[16px] py-[16px]"
+      >
         <div className="flex flex-col gap-[14px]">
-          <div className="flex flex-col gap-[20px]">
-            <Form.Item name="keywords" noStyle>
-              <SearchBar />
-            </Form.Item>
-            <div className="flex flex-col gap-[12px]">
-              <div className="text-xl font-semibold">Danh sách bảo hành</div>
-              <Form.Item name="tag" noStyle>
-                <Tags />
+          <div className="flex flex-col gap-[12px]">
+            <Form form={form} initialValues={initialValues}>
+              <Form.Item name="keywords" noStyle>
+                <SearchBar />
               </Form.Item>
-            </div>
+            </Form>
+            <div className="text-xl font-semibold">Danh sách bảo hành</div>
+            <Form.Item name="tag" noStyle>
+              <Tags />
+            </Form.Item>
           </div>
           <div className="flex flex-col gap-[12px]">
             <Form.Item
@@ -288,6 +311,10 @@ const WarrantyListItem: FC<{ item: any; form: any; itemIndex: any }> = ({
 };
 
 export default WarrantyList;
+
+type Props = {
+  scrollY: number;
+};
 
 const data = [
   {

@@ -1,19 +1,32 @@
-import { Progress } from "antd";
-import React from "react";
+import { Progress, Segmented, SegmentedProps } from "antd";
+import React, { FC } from "react";
 import ShareIcon from "../../static/icons/share-icon-purple.png";
 import { useNavigate } from "react-router-dom";
 
-const TrackingTab = () => {
+const TrackingTab: FC<Props> = ({ currentTab, setCurrentTab }) => {
   return (
-    <div className="flex flex-col gap-[12px] px-[16px] py-[12px]">
-      <TrackingItem />
-      <TrackingItem />
-      <TrackingItem />
-      <TrackingItem />
-      <TrackingItem />
-      <TrackingItem />
-      <TrackingItem />
-    </div>
+    <>
+      <div className="bg-white px-[10px] pb-[12px] pt-[10px]">
+        <Segmented
+          options={tabOptions}
+          onChange={(value) => {
+            setCurrentTab(value);
+          }}
+          value={currentTab}
+          height={32}
+          block
+        />
+      </div>
+      <div className="flex flex-col gap-[12px] px-[16px] py-[12px]">
+        <TrackingItem />
+        <TrackingItem />
+        <TrackingItem />
+        <TrackingItem />
+        <TrackingItem />
+        <TrackingItem />
+        <TrackingItem />
+      </div>
+    </>
   );
 };
 
@@ -58,3 +71,16 @@ const TrackingItem = () => {
 };
 
 export default TrackingTab;
+
+type Props = {
+  currentTab: string;
+  setCurrentTab: any;
+};
+
+const tabOptions: SegmentedProps<string>["options"] = [
+  { label: "Bảo dưỡng", value: "buy" },
+  {
+    label: "Theo dõi tiến độ",
+    value: "tracking",
+  },
+];

@@ -2,12 +2,12 @@ import React from "react";
 import ProductImg from "../../static/service.png";
 import { formatCurrency } from "../../utils/helpers";
 import { Button } from "../common/button";
-import CartAdd from "../../static/icons/cart-add.png";
+import CartAdd from "../../static/icons/cart-add.svg";
 import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
   return (
-    <div className="grid grid-cols-2 gap-[12px] px-[16px]">
+    <div className="grid grid-cols-2 gap-[12px] px-[16px] pb-[100px]">
       {Array.from({ length: 10 }).map((_, index) => (
         <ProductListItem key={index} />
       ))}
@@ -37,7 +37,7 @@ const ProductListItem = () => {
       </div>
       <div className="flex justify-between gap-[8px]">
         <Button.Icon
-          icon={<img src={CartAdd} />}
+          icon={<img src={CartAdd} className="object-contain" />}
           className="size-[30px] !rounded-[8px] bg-green2"
           onClick={(e) => e.stopPropagation()}
         />

@@ -3,8 +3,11 @@ import { Header, Page } from "zmp-ui";
 import { CallSupport } from "../components/support";
 import ArrowLeftIcon from "../static/icons/arrow-left.png";
 import { HistoryPageTabs } from "../components/HistoryPage";
+import { useScrollPosition } from "../hooks/useScrollPosition";
 
 const HistoryPage = () => {
+  const { scrollY } = useScrollPosition(".historypage-scroll-container");
+
   return (
     <Page className="page-content relative flex flex-1 flex-col bg-white">
       <Header
@@ -23,8 +26,8 @@ const HistoryPage = () => {
           </div>
         }
       />
-      <div className="flex-1 overflow-auto bg-white p-[16px] hide-scrollbar">
-        <HistoryPageTabs />
+      <div className="historypage-scroll-container flex-1 overflow-auto bg-white hide-scrollbar">
+        <HistoryPageTabs scrollY={scrollY} />
       </div>
     </Page>
   );

@@ -8,12 +8,30 @@ import {
 } from "../components/MaintenacePage";
 import { useSearchParams } from "react-router-dom";
 import { CallSupport } from "../components/support";
+import { useScrollPosition } from "../hooks/useScrollPosition";
 
 const MaintenancePage = () => {
   const [searchParams] = useSearchParams();
+  const { scrollY } = useScrollPosition(".maintenancepage-scroll-container");
   const tab = searchParams.get("tab") || "buy";
 
   const [currentTab, setCurrentTab] = useState<string>(tab);
+
+  const tabs = {
+    buy: (
+      <MaintenancePageServicesTab
+        scrollY={scrollY}
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}
+      />
+    ),
+    tracking: (
+      <MaintenancePageTrackingTab
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}
+      />
+    ),
+  };
 
   return (
     <Page className="page-content relative flex flex-1 flex-col bg-white">
@@ -33,19 +51,7 @@ const MaintenancePage = () => {
           </div>
         }
       />
-
-      <div className="bg-white px-[10px] pb-[12px] pt-[10px]">
-        <Segmented
-          options={tabOptions}
-          onChange={(value) => {
-            setCurrentTab(value);
-          }}
-          value={currentTab}
-          height={32}
-          block
-        />
-      </div>
-      <div className="flex-1 overflow-auto bg-[#F8F8F8] hide-scrollbar">
+      <div className="maintenancepage-scroll-container flex-1 overflow-auto bg-[#F8F8F8] hide-scrollbar">
         {tabs[currentTab]}
       </div>
     </Page>
@@ -53,16 +59,3 @@ const MaintenancePage = () => {
 };
 
 export default MaintenancePage;
-
-const tabOptions: SegmentedProps<string>["options"] = [
-  { label: "Bảo dưỡng", value: "buy" },
-  {
-    label: "Theo dõi tiến độ",
-    value: "tracking",
-  },
-];
-
-const tabs = {
-  buy: <MaintenancePageServicesTab />,
-  tracking: <MaintenancePageTrackingTab />,
-};

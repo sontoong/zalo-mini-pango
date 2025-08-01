@@ -7,37 +7,14 @@ import {
   ProductsPageTabBuy,
   ProductsPageTabOrder,
 } from "../components/ProductsPage";
+import { useScrollPosition } from "../hooks/useScrollPosition";
 
 const ProductsPage = () => {
   const [searchParams] = useSearchParams();
+  const { scrollY } = useScrollPosition(".productspage-scroll-container");
   const tab = searchParams.get("tab") || "buy";
 
   const [currentTab, setCurrentTab] = useState<string>(tab);
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = (event) => {
-      const scrollTop = event.target.scrollTop;
-      setScrollY(scrollTop);
-    };
-
-    const scrollContainer = document.querySelector(
-      ".productspage-scroll-container",
-    );
-
-    if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", handleScroll, {
-        passive: true,
-      });
-
-      return () => {
-        scrollContainer.removeEventListener("scroll", handleScroll);
-      };
-    } else {
-      console.log("Scroll container not found");
-      return;
-    }
-  }, []);
 
   const tabs = {
     buy: (

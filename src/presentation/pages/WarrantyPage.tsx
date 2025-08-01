@@ -3,8 +3,11 @@ import { Header, Page } from "zmp-ui";
 import { CallSupport } from "../components/support";
 import ArrowLeftIcon from "../static/icons/arrow-left.png";
 import { WarrantyPageWarrantyList } from "../components/WarrantyPage";
+import { useScrollPosition } from "../hooks/useScrollPosition";
 
 const WarrantyPage = () => {
+  const { scrollY } = useScrollPosition(".warrantypage-scroll-container");
+
   return (
     <Page className="page-content relative flex flex-1 flex-col bg-white">
       <Header
@@ -23,8 +26,8 @@ const WarrantyPage = () => {
           </div>
         }
       />
-      <div className="flex-1 overflow-auto bg-surface1 p-[16px] hide-scrollbar">
-        <WarrantyPageWarrantyList />
+      <div className="warrantypage-scroll-container flex-1 overflow-auto bg-surface1 hide-scrollbar">
+        <WarrantyPageWarrantyList scrollY={scrollY} />
       </div>
     </Page>
   );
