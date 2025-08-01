@@ -1,1 +1,1 @@
-# zalo-mini-pango
+# zalo-mini-tmc
